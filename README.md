@@ -27,6 +27,8 @@ Refer [Configuration Examples](https://github.com/arjstack/terraform-aws-example
 
 ## Inputs
 
+- `enable_key_rotation`: Automatic key rotation is supported only on symmetric encryption KMS keys.
+
 | Name | Description | Type | Default | Required |
 |:------|:------|:------|:------|:------:|
 | <a name="account_id"></a> [account_id](#input\_account\_id) | Account ID where KMS key is being created | `string` |  | yes |

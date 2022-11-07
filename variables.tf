@@ -62,7 +62,7 @@ variable "deletion_window_in_days" {
 }
 
 variable "enable_key_rotation" {
-    description = "Flag to decide if KMS key rotation is enabled."
+    description = "Flag to decide if KMS key rotation is enabled. Supported only on symmetric encryption KMS keys"
     type        = bool
     default     = false
 }

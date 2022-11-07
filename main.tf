@@ -8,7 +8,8 @@ resource aws_kms_key "this" {
 
     deletion_window_in_days = 10
 
-    enable_key_rotation = var.enable_key_rotation
+    ## Automatic key rotation is supported only on symmetric encryption KMS keys.
+    enable_key_rotation = (var.key_spec == "SYMMETRIC_DEFAULT") ? var.enable_key_rotation : null
     multi_region        = var.multi_region
     is_enabled          = var.enabled
 
