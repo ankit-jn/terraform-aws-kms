@@ -81,7 +81,7 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for symmetric encryption keys
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = ((key_spec == "SYMMETRIC_DEFAULT")
+        for_each = ((var.key_spec == "SYMMETRIC_DEFAULT")
                         && (length(var.key_symmetric_encryption_users) > 0)) ? [1] : []
 
         content {
@@ -107,7 +107,7 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for HMAC keys
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = ((key_usage == "GENERATE_VERIFY_MAC")
+        for_each = ((var.key_usage == "GENERATE_VERIFY_MAC")
                         && (length(var.key_symmetric_hmac_users) > 0)) ? [1] : []
 
         content {
@@ -156,7 +156,7 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for Sign and verify
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = ((key_usage == "SIGN_VERIFY")
+        for_each = ((var.key_usage == "SIGN_VERIFY")
                         && (length(var.key_asymmetric_sign_verify_users) > 0 ))? [1] : []
 
         content {
