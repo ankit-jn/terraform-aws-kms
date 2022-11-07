@@ -81,7 +81,7 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for symmetric encryption keys
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = ((var.encryption_key_configs.key_usage == "ENCRYPT_DECRYPT") 
+        for_each = ((var.key_usage == "ENCRYPT_DECRYPT") 
                         && (var.key_spec == "SYMMETRIC_DEFAULT")
                         && (length(var.key_users) > 0)) ? [1] : []
 
@@ -132,8 +132,8 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for Encrypt and Decrypt
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = ((var.encryption_key_configs.key_usage == "ENCRYPT_DECRYPT") 
-                        && (var.encryption_key_configs.key_spec != "SYMMETRIC_DEFAULT")
+        for_each = ((var.key_usage == "ENCRYPT_DECRYPT") 
+                        && (var.key_spec != "SYMMETRIC_DEFAULT")
                         && length(var.key_users) > 0) ? [1] : []
 
         content {
