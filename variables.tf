@@ -40,7 +40,7 @@ variable "key_usage" {
 
   validation {
       condition = contains(["ENCRYPT_DECRYPT", "SIGN_VERIFY", "GENERATE_VERIFY_MAC"], var.key_usage)
-      errorerror_message = "Valid values for `jey_usage` are `ENCRYPT_DECRYPT`, `SIGN_VERIFY`, `GENERATE_VERIFY_MAC`" 
+      error_message = "Valid values for `key_usage` are `ENCRYPT_DECRYPT`, `SIGN_VERIFY`, `GENERATE_VERIFY_MAC`" 
   }
 }
 
