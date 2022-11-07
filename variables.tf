@@ -44,12 +44,6 @@ variable "key_usage" {
   }
 }
 
-variable "custom_key_store_id" {
-    description = "ID of the KMS Custom Key Store where the key will be stored instead of KMS (eg CloudHSM)."
-    type        = string
-    default     = null
-}
-
 variable "aliases" {
     description = "List of the aliases."
     type        = list(string)
