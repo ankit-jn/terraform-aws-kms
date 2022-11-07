@@ -81,8 +81,9 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for symmetric encryption keys
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = ((var.key_spec == "SYMMETRIC_DEFAULT")
-                        && (length(var.key_symmetric_encryption_users) > 0)) ? [1] : []
+        for_each = ((var.encryption_key_configs.key_usage == "ENCRYPT_DECRYPT") 
+                        && (var.key_spec == "SYMMETRIC_DEFAULT")
+                        && (length(var.key_users) > 0)) ? [1] : []
 
         content {
             sid = "KeySymmetricEncryption"
@@ -97,7 +98,7 @@ data aws_iam_policy_document "this" {
 
             principals {
                 type        = "AWS"
-                identifiers = var.key_symmetric_encryption_users
+                identifiers = var.key_users
             }
         }
     }
@@ -108,7 +109,7 @@ data aws_iam_policy_document "this" {
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
         for_each = ((var.key_usage == "GENERATE_VERIFY_MAC")
-                        && (length(var.key_symmetric_hmac_users) > 0)) ? [1] : []
+                        && (length(var.key_users) > 0)) ? [1] : []
 
         content {
             sid = "KeyHMAC"
@@ -121,7 +122,7 @@ data aws_iam_policy_document "this" {
 
             principals {
                 type        = "AWS"
-                identifiers = var.key_symmetric_hmac_users
+                identifiers = var.key_users
             }
         }
     }
@@ -131,7 +132,9 @@ data aws_iam_policy_document "this" {
     # Gives the Principals permission for Encrypt and Decrypt
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
-        for_each = length(var.key_asymmetric_public_encryption_users) > 0 ? [1] : []
+        for_each = ((var.encryption_key_configs.key_usage == "ENCRYPT_DECRYPT") 
+                        && (var.encryption_key_configs.key_spec != "SYMMETRIC_DEFAULT")
+                        && length(var.key_users) > 0) ? [1] : []
 
         content {
             sid = "KeyAsymmetricPublicEncryption"
@@ -146,7 +149,7 @@ data aws_iam_policy_document "this" {
 
             principals {
                 type        = "AWS"
-                identifiers = var.key_asymmetric_public_encryption_users
+                identifiers = var.key_users
             }
         }
     }
@@ -157,7 +160,7 @@ data aws_iam_policy_document "this" {
     # Principals: IAM users and roles in the account, and external AWS accounts
     dynamic "statement" {
         for_each = ((var.key_usage == "SIGN_VERIFY")
-                        && (length(var.key_asymmetric_sign_verify_users) > 0 ))? [1] : []
+                        && (length(var.key_users) > 0 ))? [1] : []
 
         content {
             sid = "KeyAsymmetricSignVerify"
@@ -171,7 +174,7 @@ data aws_iam_policy_document "this" {
 
             principals {
                 type        = "AWS"
-                identifiers = var.key_asymmetric_sign_verify_users
+                identifiers = var.key_users
             }
         }
     }

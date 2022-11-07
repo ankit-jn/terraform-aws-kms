@@ -100,43 +100,9 @@ EOF
     default     = []
 }
 
-variable "key_symmetric_encryption_users" {
+variable "key_users" {
     description = <<EOF
-Key type: Symmetric, Key usage: Encrypt and decrypt
-List of ARNs for IAM principals that would be allowed to use the 
-symmetric KMS key directly for all supported cryptographic operations
-Principals: IAM users and roles in the account, and external AWS accounts
-EOF
-    type        = list(string)
-    default     = []
-}
-
-variable "key_symmetric_hmac_users" {
-    description = <<EOF
-KMS Key Administration: 
-List of ARNs for IAM principals that would be allowed to use the symmetric HMAC keys
-Principals: IAM users and roles in the account, and external AWS accounts
-EOF
-    type        = list(string)
-    default     = []
-}
-
-variable "key_asymmetric_public_encryption_users" {
-    description = <<EOF
-KMS Key Administration: 
-List of ARNs for IAM principals that would be allowed to use the 
-asymmetric KMS key for Encrypt and decrypt.
-Principals: IAM users and roles in the account, and external AWS accounts
-EOF
-    type        = list(string)
-    default     = []
-}
-
-variable "key_asymmetric_sign_verify_users" {
-    description = <<EOF
-KMS Key Administration: 
-List of ARNs for IAM principals that would be allowed to use the 
-asymmetric KMS key directly for Sign and Verify.
+List of ARNs for IAM principals that would be allowed to use the the key
 Principals: IAM users and roles in the account, and external AWS accounts
 EOF
     type        = list(string)
