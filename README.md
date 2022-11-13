@@ -1,8 +1,8 @@
-# ARJ-Stack: AWS Key Management Service Terraform module
+## ARJ-Stack: AWS Key Management Service Terraform module
 
 A Terraform module for configuring KMS Keys
 
-## Resources
+### Resources
 This module features the following components to be provisioned with different combinations:
 
 - KMS Key [[aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key)]
@@ -10,24 +10,24 @@ This module features the following components to be provisioned with different c
 - KMS Key Policy [[Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html)]
 
 
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.22.0 |
 
-## Providers
+### Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.22.0 |
 
-## Examples
+### Examples
 
 Refer [Configuration Examples](https://github.com/arjstack/terraform-aws-examples/tree/main/aws-kms) for effectively utilizing this module.
 
-## Inputs
+### Inputs
 
 - `enable_key_rotation`: Automatic key rotation is supported only on symmetric encryption KMS keys.
 
@@ -54,7 +54,6 @@ Policy Reference: https://docs.aws.amazon.com/kms/latest/developerguide/key-poli
 | <a name="key_grants_users"></a> [key_grants_users](#input\_key\_grants\_users) | Account ID where KMS key is being created | `list(string)` | `[]` | no |
 | <a name="key_users"></a> [key_symmetric_encryption_users](#input\_key\_symmetric\_encryption\_users) | List of ARNs for IAM principals that would be allowed to use the the key | `list(string)` | `[]` | no |
 
-
 #### key_spec
 
 | Key Type | Key Usage | Reference Values for `key_spec`|
@@ -64,7 +63,7 @@ Policy Reference: https://docs.aws.amazon.com/kms/latest/developerguide/key-poli
 | Asymmetric | Encrypt and decrypt | `RSA_2048` `RSA_3072` `RSA_4096` |
 | Asymmetric | Sign and verify | `RSA_2048` `RSA_3072` `RSA_4096` `ECC_NIST_P256` `ECC_NIST_P384` `ECC_NIST_P521` `ECC_SECG_P256K1` |
 
-## Outputs
+### Outputs
 
 | Name | Type | Description |
 |:------|:------|:------|
@@ -72,7 +71,7 @@ Policy Reference: https://docs.aws.amazon.com/kms/latest/developerguide/key-poli
 | <a name="key_arn"></a> [key_arn](#output\_key\_arn) | `string` | The Amazon Resource Name (ARN) of the key |
 | <a name="key_policy"></a> [key_policy](#output\_key\_policy) | `string` | The KMS Key Policy |
 
-## Authors
+### Authors
 
 Module is maintained by [Ankit Jain](https://github.com/ankit-jn) with help from [these professional](https://github.com/arjstack/terraform-aws-kms/graphs/contributors).
 
