@@ -13,7 +13,7 @@ resource aws_kms_key "this" {
     multi_region        = var.multi_region
     is_enabled          = var.enabled
 
-    policy = data.aws_iam_policy_document.this.json
+    policy = data.aws_iam_policy_document.compact.json
     
     tags = var.tags
 }
@@ -23,7 +23,4 @@ resource aws_kms_alias "this" {
 
     name          = format("alias/%s", each.value)
     target_key_id = aws_kms_key.this.key_id
-}
-
-
-  
+} 

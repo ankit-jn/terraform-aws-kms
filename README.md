@@ -50,9 +50,10 @@ Policy Reference: https://docs.aws.amazon.com/kms/latest/developerguide/key-poli
     
 | Name | Description | Type | Default | Required |
 |:------|:------|:------|:------|:------:|
-| <a name="key_administrators"></a> [key_administrators](#input\_key\_administrators) | Flag to decide if KMS key is enabled. | `list(string)` | `[]` | no |
-| <a name="key_grants_users"></a> [key_grants_users](#input\_key\_grants\_users) | Account ID where KMS key is being created | `list(string)` | `[]` | no |
-| <a name="key_users"></a> [key_symmetric_encryption_users](#input\_key\_symmetric\_encryption\_users) | List of ARNs for IAM principals that would be allowed to use the the key | `list(string)` | `[]` | no |
+| <a name="key_administrators"></a> [key_administrators](#input\_key\_administrators) | List of ARNs for IAM principals that would be allowed to manage the KMS key. | `list(string)` | `[]` | no |
+| <a name="key_grants_users"></a> [key_grants_users](#input\_key\_grants\_users) | List of ARNs for IAM principals that would be allowed to grant AWS services that are integrated with AWS KMS to use the KMS key on their behalf. | `list(string)` | `[]` | no |
+| <a name="key_users"></a> [key_symmetric_encryption_users](#input\_key\_symmetric\_encryption\_users) | List of ARNs for IAM principals that would be allowed to use the the key. | `list(string)` | `[]` | no |
+| <a name="policy"></a> [policy](#input\_policy) | (JSON) Policy statements to be added to KMS Key Policy. | `string` | `""` | no |
 
 #### key_spec
 

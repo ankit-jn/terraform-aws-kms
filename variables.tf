@@ -109,6 +109,12 @@ EOF
     default     = []
 }
 
+variable "policy" {
+    description = "Policy statements to be added to KMS Key Policy."
+    type        = string
+    default     = ""
+}
+
 variable "tags" {
   description = "(Optional) A map of tags to assign to all the resource."
   type        = map(any)

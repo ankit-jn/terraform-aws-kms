@@ -1,3 +1,8 @@
+## Compact all the policies
+data aws_iam_policy_document "compact" {
+    source_policy_documents = compact([ data.aws_iam_policy_document.this.json, var.policy ])
+}
+
 ## KMS Key Policy
 ## Ref: https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html
 data aws_iam_policy_document "this" {
